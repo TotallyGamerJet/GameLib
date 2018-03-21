@@ -4,7 +4,7 @@ import (
 	"strings"
 	"fmt"
 	"github.com/go-gl/gl/v4.5-core/gl"
-	"io/ioutil"
+	"github.com/gobuffalo/packr"
 )
 
 type ShaderProgram struct {
@@ -41,10 +41,13 @@ func (s ShaderProgram) stop() {
 }
 
 func loadShader(filename string, shaderType uint32) (uint32, error) {
-	file, err := ioutil.ReadFile(filename)
+	box := packr.NewBox("./shaders")
+	file, err := box.MustString(filename)
+	//file, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
+
 	shader := gl.CreateShader(shaderType)
 
 	csources, free := gl.Strs(string(file) + "\x00")
