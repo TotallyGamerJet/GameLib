@@ -60,7 +60,7 @@ func main() {
 	obj := loader.loadToVAO(vertices, indices)
 
 	//shader := createShaderProgram(vertexShader, fragmentShader)
-	shader := createShaderProgram("./shaders/vertex.shader", "./shaders/fragment.shader")
+	shader := createShaderProgram("vertex.shader", "fragment.shader")
 
 	for !display.ShouldClose() {
 		display.clear()
